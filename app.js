@@ -99,6 +99,22 @@ function handleEraserClick(event) {
   ctx.clearRect(userX, userY); //작동하지 않음
 }
 
+function pushAndExecute() {
+  commands.push(arguments);
+  execute.apply(null, arguments);
+}
+
+function handleCtrlZClick(event) {
+  let commands = [];
+  if (event.ctrlKey && event.key === "z") {
+    commands.splice(-1, 1);
+    ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+    commands.forEach(function (command) {
+      execute.apply(null, command);
+    });
+  }
+}
+
 if (canvas) {
   canvas.addEventListener("mousemove", onMouseMove);
   canvas.addEventListener("mousedown", startPainting);
@@ -107,13 +123,13 @@ if (canvas) {
   canvas.addEventListener("click", handleCanvasClick);
   canvas.addEventListener("contextmenu", handleCanvasMenu);
 }
+window.addEventListener("keydown", handleCtrlZClick);
 
 Array.from(colors).forEach((color) => color.addEventListener("click", handleColorClick));
 
 if (range) {
   range.addEventListener("input", handleRangeChange);
 }
-
 if (mode) {
   mode.addEventListener("click", handleModeClick);
 }
