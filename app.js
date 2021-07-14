@@ -87,6 +87,8 @@ function handleSaveClick() {
   link.click();
 }
 
+function handleResetClick() {}
+
 if (canvas) {
   canvas.addEventListener("mousemove", onMouseMove);
   canvas.addEventListener("mousedown", startPainting);
@@ -94,6 +96,7 @@ if (canvas) {
   canvas.addEventListener("mouseleave", stopPainting);
   canvas.addEventListener("click", handleCanvasClick);
   canvas.addEventListener("contextmenu", handleCanvasMenu);
+  canvas.addEventListener("reset", handleResetClick);
 }
 
 Array.from(colors).forEach((color) => color.addEventListener("click", handleColorClick));
