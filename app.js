@@ -101,7 +101,7 @@ function handleEraserClick(event) {
 
 function pushAndExecute() {
   commands.push(arguments);
-  execute.apply(null, arguments);
+  execute.apply(null, arguments); //here
 }
 
 function handleCtrlZClick(event) {
@@ -110,7 +110,7 @@ function handleCtrlZClick(event) {
     commands.splice(-1, 1);
     ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
     commands.forEach(function (command) {
-      execute.apply(null, command);
+      execute.apply(null, command); //here2
     });
   }
 }
